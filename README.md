@@ -3,7 +3,7 @@ Code repository for the paper:
 **Learning to Reconstruct 3D Human Pose and Shape via Model-fitting in the Loop**  
 [Nikos Kolotouros](https://www.seas.upenn.edu/~nkolot/)\*, [Georgios Pavlakos](https://www.seas.upenn.edu/~pavlakos/)\*, [Michael J. Black](https://ps.is.mpg.de/~black), [Kostas Daniilidis](http://www.cis.upenn.edu/~kostas/)  
 ICCV 2019  
-[[paper](https://arxiv.org/pdf/1905.03244.pdf)] [[project page](https://www.seas.upenn.edu/~nkolot/projects/spin/)]
+[[paper](https://arxiv.org/pdf/1909.12828.pdf)] [[project page](https://www.seas.upenn.edu/~nkolot/projects/spin/)]
 
 ![teaser](teaser.png)
 
