@@ -76,7 +76,7 @@ def process_image(img_file, bbox_file, openpose_file, input_res=224):
     If there are bounding box annotations, use them to crop the image.
     If no bounding box is specified but openpose detections are available, use them to get the bounding box.
     """
-    normalize_img = Normalize(mean=config.IMG_NORM_MEAN, std=config.IMG_NORM_STD)
+    normalize_img = Normalize(mean=constants.IMG_NORM_MEAN, std=constants.IMG_NORM_STD)
     img = cv2.imread(img_file)[:,:,::-1].copy() # PyTorch does not support negative stride at the moment
     if bbox_file is None and openpose_file is None:
         # Assume that the person is centerered in the image
