@@ -77,6 +77,7 @@ class BaseTrainer(object):
                         self.test()
                 else:
                     tqdm.write('Timeout reached')
+                    self.finalize()
                     self.saver.save_checkpoint(self.models_dict, self.optimizers_dict, epoch, step, self.options.batch_size, train_data_loader.sampler.dataset_perm, self.step_count) 
                     tqdm.write('Checkpoint saved')
                     sys.exit(0)
