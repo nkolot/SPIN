@@ -4,6 +4,7 @@ import os
 import cv2
 from torchgeometry import angle_axis_to_rotation_matrix
 
+import config
 import constants
 
 class FitsDict():
@@ -21,7 +22,7 @@ class FitsDict():
                 self.fits_dict[ds_name] = torch.from_numpy(np.load(dict_file))
             except IOError:
                 # Dictionary does not exist, so populate with static fits
-                dict_file = os.path.join(constants.STATIC_FITS_DIR, ds_name + '_fits.npy')
+                dict_file = os.path.join(config.STATIC_FITS_DIR, ds_name + '_fits.npy')
                 self.fits_dict[ds_name] = torch.from_numpy(np.load(dict_file))
 
     def save(self):
