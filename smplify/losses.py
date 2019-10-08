@@ -73,10 +73,10 @@ def camera_fitting_loss(model_joints, camera_t, camera_t_est, camera_center, joi
     op_joints_ind = [constants.JOINT_IDS[joint] for joint in op_joints]
     gt_joints = ['Right Hip', 'Left Hip', 'Right Shoulder', 'Left Shoulder']
     gt_joints_ind = [constants.JOINT_IDS[joint] for joint in gt_joints]
-    reprojection_error_op = (joints_2d[:, op_joints_ind, :-1] -
-                             projected_joints[:, op_joints_ind, :]) ** 2
-    reprojection_error_gt = (joints_2d[:, gt_joints_ind, :-1] -
-                             projected_joints[:, gt_joints_ind, :]) ** 2
+    reprojection_error_op = (joints_2d[:, op_joints_ind] -
+                             projected_joints[:, op_joints_ind]) ** 2
+    reprojection_error_gt = (joints_2d[:, gt_joints_ind] -
+                             projected_joints[:, gt_joints_ind]) ** 2
 
     # Check if for each example in the batch all 4 OpenPose detections are valid, otherwise use the GT detections
     # OpenPose joints are more reliable for this task, so we prefer to use them if possible
