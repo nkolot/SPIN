@@ -52,6 +52,7 @@ class TrainOptions():
         shuffle_train = train.add_mutually_exclusive_group()
         shuffle_train.add_argument('--shuffle_train', dest='shuffle_train', action='store_true', help='Shuffle training data')
         shuffle_train.add_argument('--no_shuffle_train', dest='shuffle_train', action='store_false', help='Don\'t shuffle training data')
+        shuffle_train.set_defaults(shuffle_train=True)
         return 
 
     def parse_args(self):
