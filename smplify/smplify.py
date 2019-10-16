@@ -87,6 +87,7 @@ class SMPLify():
                                        init_cam_t, camera_center,
                                        joints_2d, joints_conf, focal_length=self.focal_length)
             camera_optimizer.zero_grad()
+            loss.backward()
             camera_optimizer.step()
 
         # Fix camera translation after optimizing camera
@@ -113,6 +114,7 @@ class SMPLify():
                                      joints_2d, joints_conf, self.pose_prior,
                                      focal_length=self.focal_length)
             body_optimizer.zero_grad()
+            loss.backward()
             body_optimizer.step()
 
         # Get final loss value
