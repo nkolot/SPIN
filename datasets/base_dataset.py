@@ -157,7 +157,7 @@ class BaseDataset(Dataset):
         S[:, :-1] = np.einsum('ij,kj->ki', rot_mat, S[:, :-1]) 
         # flip the x coordinates
         if f:
-            S[:,:-1] = flip_kp(S[:, :-1])
+            S = flip_kp(S)
         S = S.astype('float32')
         return S
 
