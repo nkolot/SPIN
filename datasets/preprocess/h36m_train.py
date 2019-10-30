@@ -6,17 +6,18 @@ import h5py
 import numpy as np
 import argparse
 from spacepy import pycdf
+from .read_openpose import read_openpose
 
 # Illustrative script for training data extraction
 # No SMPL parameters will be included in the .npz file.
-def h36m_train_extract(dataset_path, out_path, extract_img=False):
+def h36m_train_extract(dataset_path, openpose_path, out_path, extract_img=False):
 
     # convert joints to global order
     h36m_idx = [11, 6, 7, 8, 1, 2, 3, 12, 24, 14, 15, 17, 18, 19, 25, 26, 27]
     global_idx = [14, 3, 4, 5, 2, 1, 0, 16, 12, 17, 18, 9, 10, 11, 8, 7, 6]
 
     # structs we use
-    imgnames_, scales_, centers_, parts_, Ss_  = [], [], [], [], []
+    imgnames_, scales_, centers_, parts_, Ss_, openposes_  = [], [], [], [], [], []
 
     # users in validation set
     user_list = [1, 5, 6, 7, 8]
@@ -102,6 +103,11 @@ def h36m_train_extract(dataset_path, out_path, extract_img=False):
                     S24 = np.zeros([24,4])
                     S24[global_idx, :3] = S17
                     S24[global_idx, 3] = 1
+                    
+                    # read openpose detections
+                    json_file = os.path.join(openpose_path, 'coco',
+                        imgname.replace('.jpg', '_keypoints.json'))
+                    openpose = read_openpose(json_file, part, 'h36m')
 
                     # store data
                     imgnames_.append(os.path.join('images', imgname))
@@ -109,6 +115,7 @@ def h36m_train_extract(dataset_path, out_path, extract_img=False):
                     scales_.append(scale)
                     parts_.append(part)
                     Ss_.append(S24)
+                    openposes_.append(openpose)
 
     # store the data struct
     if not os.path.isdir(out_path):
@@ -118,4 +125,5 @@ def h36m_train_extract(dataset_path, out_path, extract_img=False):
                        center=centers_,
                        scale=scales_,
                        part=parts_,
-                       S=Ss_)
+                       S=Ss_,
+                       openpose=openposes_)
