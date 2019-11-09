@@ -12,7 +12,7 @@ We suggest to use the [docker image](https://hub.docker.com/r/chaneyk/spin) we p
 compiled and preinstalled. Alternatively you can create a virtual environment and install all the relevant dependencies as follows:
 
 ```
-virtualenv spin
+virtualenv spin -p python3
 source spin/bin/activate
 pip install -U pip
 pip install -r requirements.txt
