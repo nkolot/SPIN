@@ -9,7 +9,7 @@ ICCV 2019
 
 ## Installation instructions
 We suggest to use the [docker image](https://hub.docker.com/r/chaneyk/spin) we provide that has all dependencies
-compiled and preinstalled. Alternatively you can create a virtual environment and install all the relevant dependencies as follows:
+compiled and preinstalled. Alternatively you can create a `python3` virtual environment and install all the relevant dependencies as follows:
 
 ```
 virtualenv spin
@@ -53,7 +53,7 @@ python3 demo.py --checkpoint=data/model_checkpoint.pt --img=examples/im1010.jpg 
 ```
 Example with cropped and centered image
 ```
-python3 demo.py --checkpoint=data/model_checkpoint.ptt --img=examples/im1010.jpg
+python3 demo.py --checkpoint=data/model_checkpoint.pt --img=examples/im1010.jpg
 ```
 
 Running the previous command will save the results in ```examples/im1010_{shape,shape_side}.png```. The file  ```im1010_shape.png``` shows the overlayed reconstruction of the model on the image.  We also render a side view, saved in ```im1010_shape_side.png```.
