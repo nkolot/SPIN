@@ -5,6 +5,7 @@ from torchgeometry import angle_axis_to_rotation_matrix, rotation_matrix_to_angl
 import cv2
 
 from datasets import MixedDataset
+from datasets.base_dataset import BaseDataset
 from models import hmr, SMPL
 from smplify import SMPLify
 from utils.geometry import batch_rodrigues, perspective_projection, estimate_translation
@@ -38,9 +39,10 @@ class Trainer(BaseTrainer):
         self.models_dict = {'model': self.model}
         self.optimizers_dict = {'optimizer': self.optimizer}
         self.focal_length = constants.FOCAL_LENGTH
+        self.conf_thresh = self.options.conf_thresh
 
         # Initialize SMPLify fitting module
-        self.smplify = SMPLify(step_size=1e-2, batch_size=self.options.batch_size, num_iters=self.options.num_smplify_iters, focal_length=self.focal_length)
+        self.smplify = SMPLify(step_size=1e-2, batch_size=self.options.batch_size, num_iters=self.options.num_smplify_iters, focal_length=self.focal_length, prior_mul=0.1, conf_thresh=self.conf_thresh)
         if self.options.pretrained_checkpoint is not None:
             self.load_pretrained(checkpoint_file=self.options.pretrained_checkpoint)
 
@@ -204,6 +206,9 @@ class Trainer(BaseTrainer):
             opt_pose[update, :] = new_opt_pose[update, :]
             opt_betas[update, :] = new_opt_betas[update, :]
             opt_cam_t[update, :] = new_opt_cam_t[update, :]
+
+            # Replace extreme betas with zero betas
+            opt_betas[(opt_betas.abs() > 3).any(dim=-1)] = 0.
 
             self.fits_dict[(dataset_name, indices.cpu(), rot_angle.cpu(), is_flipped.cpu(), update.cpu())] = (opt_pose.cpu(), opt_betas.cpu())
 
