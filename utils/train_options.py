@@ -36,7 +36,7 @@ class TrainOptions():
         train.add_argument('--checkpoint_steps', type=int, default=10000, help='Checkpoint saving frequency')
         train.add_argument('--img_res', type=int, default=224, help='Rescale bounding boxes to size [img_res, img_res] before feeding them in the network') 
         train.add_argument('--rot_factor', type=float, default=30, help='Random rotation in the range [-rot_factor, rot_factor]') 
-        train.add_argument('--noise_factor', type=float, default=0.4, help='Random rotation in the range [-rot_factor, rot_factor]') 
+        train.add_argument('--noise_factor', type=float, default=0.4, help='random.uniform noise in the range low=1-noise_factor, high=1.0+noise_factor') 
         train.add_argument('--scale_factor', type=float, default=0.25, help='rescale bounding boxes by a factor of [1-options.scale_factor,1+options.scale_factor]') 
         train.add_argument('--ignore_3d', default=False, action='store_true', help='Ignore GT 3D data (for unpaired experiments') 
         train.add_argument('--shape_loss_weight', default=0, type=float, help='Weight of per-vertex loss') 
