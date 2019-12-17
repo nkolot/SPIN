@@ -5,7 +5,6 @@ from torchgeometry import angle_axis_to_rotation_matrix, rotation_matrix_to_angl
 import cv2
 
 from datasets import MixedDataset
-from datasets.base_dataset import BaseDataset
 from models import hmr, SMPL
 from smplify import SMPLify
 from utils.geometry import batch_rodrigues, perspective_projection, estimate_translation
@@ -39,10 +38,9 @@ class Trainer(BaseTrainer):
         self.models_dict = {'model': self.model}
         self.optimizers_dict = {'optimizer': self.optimizer}
         self.focal_length = constants.FOCAL_LENGTH
-        self.conf_thresh = self.options.conf_thresh
 
         # Initialize SMPLify fitting module
-        self.smplify = SMPLify(step_size=1e-2, batch_size=self.options.batch_size, num_iters=self.options.num_smplify_iters, focal_length=self.focal_length, prior_mul=0.1, conf_thresh=self.conf_thresh)
+        self.smplify = SMPLify(step_size=1e-2, batch_size=self.options.batch_size, num_iters=self.options.num_smplify_iters, focal_length=self.focal_length)
         if self.options.pretrained_checkpoint is not None:
             self.load_pretrained(checkpoint_file=self.options.pretrained_checkpoint)
 
