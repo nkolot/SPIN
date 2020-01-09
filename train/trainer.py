@@ -205,13 +205,14 @@ class Trainer(BaseTrainer):
             opt_betas[update, :] = new_opt_betas[update, :]
             opt_cam_t[update, :] = new_opt_cam_t[update, :]
 
-            # Replace extreme betas with zero betas
-            opt_betas[(opt_betas.abs() > 3).any(dim=-1)] = 0.
 
             self.fits_dict[(dataset_name, indices.cpu(), rot_angle.cpu(), is_flipped.cpu(), update.cpu())] = (opt_pose.cpu(), opt_betas.cpu())
 
         else:
             update = torch.zeros(batch_size, device=self.device).byte()
+
+        # Replace extreme betas with zero betas
+        opt_betas[(opt_betas.abs() > 3).any(dim=-1)] = 0.
 
         # Replace the optimized parameters with the ground truth parameters, if available
         opt_vertices[has_smpl, :, :] = gt_vertices[has_smpl, :, :]
