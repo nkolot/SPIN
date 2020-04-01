@@ -255,7 +255,7 @@ class Trainer(BaseTrainer):
         loss = self.options.shape_loss_weight * loss_shape +\
                self.options.keypoint_loss_weight * loss_keypoints +\
                self.options.keypoint_loss_weight * loss_keypoints_3d +\
-               loss_regr_pose + self.options.beta_loss_weight * loss_regr_betas +\
+               self.options.pose_loss_weight * loss_regr_pose + self.options.beta_loss_weight * loss_regr_betas +\
                ((torch.exp(-pred_camera[:,0]*10)) ** 2 ).mean()
         loss *= 60
 
