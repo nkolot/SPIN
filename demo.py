@@ -102,7 +102,7 @@ if __name__ == '__main__':
     
     # Load pretrained model
     model = hmr(config.SMPL_MEAN_PARAMS).to(device)
-    checkpoint = torch.load(args.checkpoint)
+    checkpoint = torch.load(args.checkpoint, map_location=device)
     model.load_state_dict(checkpoint['model'], strict=False)
 
     # Load SMPL model
