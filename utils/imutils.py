@@ -41,7 +41,7 @@ def transform(pt, center, scale, res, invert=0, rot=0):
         t = np.linalg.inv(t)
     new_pt = np.array([pt[0]-1, pt[1]-1, 1.]).T
     new_pt = np.dot(t, new_pt)
-    return new_pt[:2].astype(int)+1
+    return np.rint(new_pt[:2]).astype(int)
 
 def crop(img, center, scale, res, rot=0):
     """Crop image according to the supplied bounding box."""
