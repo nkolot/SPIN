@@ -9,12 +9,28 @@ ICCV 2019
 
 ## Installation instructions
 We suggest to use the [docker image](https://hub.docker.com/r/chaneyk/spin) we provide that has all dependencies
-compiled and preinstalled. Alternatively you can create a `python3` virtual environment and install all the relevant dependencies as follows:
+compiled and preinstalled.
 
+Alternatively you can install locally:
 ```
-virtualenv spin -p python3
+git clone https://github.com/nkolot/SPIN.git
+cd SPIN
+git checkout origin/cuda11_fix
+```
+
+You can create a `python3` virtual environment and install all the relevant dependencies. You can adapt the dependencies based on your CUDA version:
+```
+python3.10 -m venv spin
 source spin/bin/activate
-pip install -U pip
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
+pip install -r requirements.txt
+```
+
+There is also the option of using a conda environment:
+```
+conda create --name spin python=3.10
+conda activate spin
+conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
 pip install -r requirements.txt
 ```
 

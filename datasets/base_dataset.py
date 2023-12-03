@@ -47,8 +47,8 @@ class BaseDataset(Dataset):
         
         # Get gt SMPL parameters, if available
         try:
-            self.pose = self.data['pose'].astype(np.float)
-            self.betas = self.data['shape'].astype(np.float)
+            self.pose = self.data['pose'].astype(np.float32)
+            self.betas = self.data['shape'].astype(np.float32)
             if 'has_smpl' in self.data:
                 self.has_smpl = self.data['has_smpl']
             else:

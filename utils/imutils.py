@@ -4,6 +4,7 @@ This file contains functions that are used to perform data augmentation.
 import torch
 import numpy as np
 import scipy.misc
+from skimage.transform import rotate, resize
 import cv2
 
 import constants
@@ -73,10 +74,10 @@ def crop(img, center, scale, res, rot=0):
 
     if not rot == 0:
         # Remove padding
-        new_img = scipy.misc.imrotate(new_img, rot)
+        new_img = rotate(new_img, rot, preserve_range=True)
         new_img = new_img[pad:-pad, pad:-pad]
 
-    new_img = scipy.misc.imresize(new_img, res)
+    new_img = resize(new_img, res, preserve_range=True)
     return new_img
 
 def uncrop(img, center, scale, orig_shape, rot=0, is_rgb=True):
