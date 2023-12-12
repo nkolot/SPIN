@@ -7,7 +7,10 @@ ICCV 2019
 
 ![teaser](teaser.png)
 
+##  [<img src="https://i.imgur.com/QCojoJk.png" width="40"> You can run the SPIN demo in Google Colab](https://colab.research.google.com/drive/1uH2JtavOtDrFl6RsipyIncCSr19GWW4x?usp=sharing)
+
 ## Installation instructions
+#### If you want to run the inference code and these instructions are not compatible with your setup, we have updated the installation procedure and inference code to be compatible with recent cuda/pytorch versions. Please check the ``cuda11_fix`` branch.
 We suggest to use the [docker image](https://hub.docker.com/r/chaneyk/spin) we provide that has all dependencies
 compiled and preinstalled. Alternatively you can create a `python3` virtual environment and install all the relevant dependencies as follows:
 
