@@ -6,7 +6,6 @@ import h5py
 import json
 import numpy as np
 import scipy.io as sio
-import scipy.misc
 from .read_openpose import read_openpose
 
 def read_calibration(calib_file, vid_list):
@@ -199,7 +198,7 @@ def test_data(dataset_path, out_path, joints_idx, scaleFactor):
 
             # check that all joints are visible
             img_file = os.path.join(dataset_path, img_name)
-            I = scipy.misc.imread(img_file)
+            I = cv2.imread(img_file)
             h, w, _ = I.shape
             x_in = np.logical_and(joints[:, 0] < w, joints[:, 0] >= 0)
             y_in = np.logical_and(joints[:, 1] < h, joints[:, 1] >= 0)

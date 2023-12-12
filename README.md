@@ -7,6 +7,8 @@ ICCV 2019
 
 ![teaser](teaser.png)
 
+##  [<img src="https://i.imgur.com/QCojoJk.png" width="40"> You can run the SPIN demo in Google Colab](https://colab.research.google.com/drive/1uH2JtavOtDrFl6RsipyIncCSr19GWW4x?usp=sharing)
+
 ## Installation instructions
 We suggest to use the [docker image](https://hub.docker.com/r/chaneyk/spin) we provide that has all dependencies
 compiled and preinstalled.
