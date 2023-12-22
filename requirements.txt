@@ -4,7 +4,7 @@ opencv-python
 pyopengl
 pyrender
 scikit-image
-scipy==1.0.0
+scipy==1.10.0
 tensorboard
 chumpy
 smplx
